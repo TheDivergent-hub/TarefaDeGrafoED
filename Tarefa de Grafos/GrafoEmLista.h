@@ -4,13 +4,14 @@
 #include <vector>
 #include <list>
 #include <string>
+#include <iostream>
 
 class GrafoEmLista {
 public:
     GrafoEmLista(int numVertices);
     void adicionarAresta(int v1, int v2);
     void imprimirGrafo();
-    void carregarGrafoDeArquivo(const std::string& nomeArquivo);
+    void carregarGrafoDeArquivo(const std::string& nomeArquivo, GrafoEmLista& grafo);
     void buscaEmLargura(int s, int t);
     void buscaEmProfundidadeComPilha(int s, int t);
 

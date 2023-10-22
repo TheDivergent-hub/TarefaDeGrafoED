@@ -1,13 +1,12 @@
-#ifndef GRAFOEMLISTA_H
-#define GRAFOEMLISTA_H
+#ifndef GRAFOEMMATRIZ_H
+#define GRAFOEMMATRIZ_H
 
-#include <iostream>
 #include <vector>
-#include <list>
+#include <string>
 
-class GrafoEmLista {
+class GrafoEmMatriz {
 public:
-    GrafoEmLista(int numVertices);
+    GrafoEmMatriz(int numVertices);
     void adicionarAresta(int v1, int v2);
     void imprimirGrafo();
     void carregarGrafoDeArquivo(const std::string& nomeArquivo);
@@ -16,7 +15,7 @@ public:
 
 private:
     int numVertices;
-    std::vector<std::list<int>> listaAdjacencia;
+    std::vector<std::vector<int>> matrizAdjacencia;
 };
 
 #endif

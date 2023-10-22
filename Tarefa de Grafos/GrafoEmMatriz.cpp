@@ -1,33 +1,14 @@
+#include "Pilha.h"
+#include "GrafoEmMatriz.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <queue>
 #include <unordered_map>
-#include "Pilha.h"
-#include "GrafoEmMatriz.h"
+
 
 using namespace std;
-
-class GrafoEmMatriz {
-
-public:
-
-    GrafoEmMatriz(int numVertices);
-    void adicionarAresta(int v1, int v2);
-    void imprimirGrafo();
-    void carregarGrafoDeArquivo(const string& nomeArquivo);
-    void buscaEmLargura(int s, int t);
-    void buscaEmProfundidadeComPilha(int s, int t);
-
-
-private:
-
-    vector<vector<int>> matrizAdjacencia;
-    int numVertices;
-    
-};
-
 
 GrafoEmMatriz::GrafoEmMatriz(int numVertices) {
     
@@ -136,7 +117,7 @@ void GrafoEmMatriz::buscaEmProfundidadeComPilha(int s, int t) {
 
         if (u == t) {
             // Encontrou o destino, imprima o caminho
-            cout << "Caminho entre os vértices " << s << " e " << t << ": ";
+            cout << "Caminho entre os vertices " << s << " e " << t << ": ";
             int v = t;
             while (v != -1) {
                 cout << v;
@@ -156,7 +137,7 @@ void GrafoEmMatriz::buscaEmProfundidadeComPilha(int s, int t) {
         }
     }
 
-    cout << "Não há caminho entre os vértices " << s << " e " << t << "." << endl;
+    cout << "Nao ha caminho entre os vertices " << s << " e " << t << "." << endl;
     
 }
 

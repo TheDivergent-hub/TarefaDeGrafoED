@@ -10,67 +10,37 @@
 
 using namespace std;
 
-
 struct Vertice {
-
     int dado;
-    vector<int> vizinhos; 
-
+    vector<int> vizinhos;
 };
 
 vector<Vertice> vertices;
 
-class GrafoEmLista {
-
- public:
-
-    GrafoEmLista(int numVertices);
-    void adicionarAresta(int v1, int v2);
-    void imprimirGrafo();
-    void carregarGrafoDeArquivo(const string& nomeArquivo, GrafoEmLista& grafo);
-    void buscaEmLargura(int s, int t);
-    void buscaEmProfundidadeComPilha(int s, int t);
-
- private:
-
-    int numVertices;
-    vector<list<int>> listaAdjacencia;
-
-};
-
-
 GrafoEmLista::GrafoEmLista(int numVertices) {
-
+    this->numVertices = numVertices;
     vertices.resize(numVertices);
     for (int i = 0; i < numVertices; i++) {
         vertices[i].dado = 0;
     }
-
 }
-
 
 void GrafoEmLista::adicionarAresta(int v1, int v2) {
-
     vertices[v1].vizinhos.push_back(v2);
     vertices[v2].vizinhos.push_back(v1);
-
 }
 
-
 void GrafoEmLista::imprimirGrafo() {
-
     for (int i = 0; i < vertices.size(); i++) {
-        cout << "Vértice " << vertices[i].dado << ": ";
+        cout << "Vertice " << vertices[i].dado << ": ";
         for (int j = 0; j < vertices[i].vizinhos.size(); j++) {
             cout << vertices[i].vizinhos[j] << " ";
         }
         cout << endl;
     }
-    
 }
 
 void GrafoEmLista::carregarGrafoDeArquivo(const string& nomeArquivo, GrafoEmLista& grafo) {
-
     ifstream arquivo(nomeArquivo);
     
     if (!arquivo) {
@@ -82,21 +52,18 @@ void GrafoEmLista::carregarGrafoDeArquivo(const string& nomeArquivo, GrafoEmList
     string linha;
 
     while (getline(arquivo, linha)) {
-        
         istringstream streamLinha(linha);
         streamLinha >> v1;
         
         while (streamLinha >> v2) {
             grafo.adicionarAresta(v1, v2);
         }
-
     }
 
     arquivo.close();
 }
 
 void GrafoEmLista::buscaEmLargura(int s, int t) {
-
     vector<bool> visitado(numVertices, false);
     unordered_map<int, int> pai; // Mapeia vértices pais
 
@@ -108,7 +75,7 @@ void GrafoEmLista::buscaEmLargura(int s, int t) {
         int u = fila.front();
         fila.pop();
 
-        for (int v : listaAdjacencia[u]) {
+        for (int v : vertices[u].vizinhos) {
             if (!visitado[v]) {
                 visitado[v] = true;
                 fila.push(v);
@@ -119,7 +86,7 @@ void GrafoEmLista::buscaEmLargura(int s, int t) {
 
     // Recupere e imprima o caminho
     if (!visitado[t]) {
-        cout << "Não há caminho entre os vértices " << s << " e " << t << "." << endl;
+        cout << "Nao ha caminho entre os vertices " << s << " e " << t << "." << endl;
     } else {
         vector<int> caminho;
         int v = t;
@@ -129,7 +96,7 @@ void GrafoEmLista::buscaEmLargura(int s, int t) {
         }
         caminho.push_back(s);
 
-        cout << "Caminho entre os vértices " << s << " e " << t << ": ";
+        cout << "Caminho entre os vertices " << s << " e " << t << ": ";
         for (int i = caminho.size() - 1; i >= 0; i--) {
             cout << caminho[i];
             if (i != 0) cout << " -> ";
@@ -139,7 +106,6 @@ void GrafoEmLista::buscaEmLargura(int s, int t) {
 }
 
 void GrafoEmLista::buscaEmProfundidadeComPilha(int s, int t) {
-
     vector<bool> visitado(numVertices, false);
     vector<int> pai(numVertices, -1); // Mapeia vértices pais
 
@@ -153,7 +119,7 @@ void GrafoEmLista::buscaEmProfundidadeComPilha(int s, int t) {
 
         if (u == t) {
             // Encontrou o destino, imprima o caminho
-            cout << "Caminho entre os vértices " << s << " e " << t << ": ";
+            cout << "Caminho entre os vertices " << s << " e " << t << ": ";
             int v = t;
             while (v != -1) {
                 cout << v;
@@ -164,7 +130,7 @@ void GrafoEmLista::buscaEmProfundidadeComPilha(int s, int t) {
             return;
         }
 
-        for (int v : listaAdjacencia[u]) {
+        for (int v : vertices[u].vizinhos) {
             if (!visitado[v]) {
                 visitado[v] = true;
                 pai[v] = u;
@@ -173,6 +139,5 @@ void GrafoEmLista::buscaEmProfundidadeComPilha(int s, int t) {
         }
     }
 
-    cout << "Não há caminho entre os vértices " << s << " e " << t << "." << endl;
+    cout << "Nao ha caminho entre os vertices " << s << " e " << t << "." << endl;
 }
-
