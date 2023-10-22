@@ -1,0 +1,3 @@
+Eu tinha me esquecido de testar o makefile antes de enviar o trabalho. Ele não estava considerando um dos arquivos de código, mais especificamente o GrafoEmMatriz.cpp, na hora de compilar e estava gerando um programa com variáveis indefinidas no main. 
+
+Esse código é uma tradução feita de um código de grafo originalmente em C.
