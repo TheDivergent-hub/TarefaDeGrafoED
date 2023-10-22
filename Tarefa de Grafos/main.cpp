@@ -76,10 +76,3 @@ int main() {
 
     return 0;
 }
-
-/*
-    Nota: Esse definitivamente foi o melhor switch case que já vi, não esperava que era possível ordenar os comandos do cout com ele e
-    integrar outros comandos dentro dele, embora eu tenha usado muito do-while em Java, não consegui portar meus conhecimentos
-    de lá para o c++ porque o Java em si é muito enrigecido, praticar Java por um ano e chegar agora e aplicar tudo de um outro
-    jeito dá muita dor de cabeça. Prciso voltar a estudar o que as funções fazem.
-*/
